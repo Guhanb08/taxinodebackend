@@ -97,7 +97,7 @@ export const updateProductController = async (
     let payload = req.body;
     const { id } = req.params;
 
-    const existingProduct = await findUnique({ productcode: payload.productcode });
+    const existingProduct = await findUnique({ productcode: payload.productcode , branch : payload.branch});
     if (existingProduct && existingProduct._id.toString()  !==  id) {
       return next(createAppError(400, "Product Code Already Exists"));
     }
