@@ -108,7 +108,27 @@ export const createLedgerController = async (
     next(err);
   }
 };
-
+export const updateLedgerController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    let payload = req.body;
+    const ledger = await updateLedger(id, payload);
+    if (ledger) {
+      res.status(200).json({
+        data: ledger,
+        message: "Ledger Updated Successfully",
+      });
+    } else {
+      throw new Error("Ledger Update Failed");
+    }
+  } catch (err) {
+    next(err);
+  }
+}
 export const deleteLedgerController = async (
   req: Request,
   res: Response,

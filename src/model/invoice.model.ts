@@ -41,6 +41,11 @@ const InvoiceSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
+      discounttype :{
+        type: String,
+        default: 'Percentage',
+        // Percentage , Amount  
+      },
       discount: {
         type: Number,
         default: 0,
@@ -111,7 +116,7 @@ InvoiceSchema.pre("save", async function (next) {
     if (!this.isNew) {
       return next();
     }
-
+/* 
     for (const product of this.products) {
       if(product.productcode){
         const foundProduct = await mongoose.model('Product').findOne({ _id: product.productcode });
@@ -124,7 +129,7 @@ InvoiceSchema.pre("save", async function (next) {
         continue;
       }
      
-    }
+    } */
 
 
     const highestInvoiceno = await mongoose

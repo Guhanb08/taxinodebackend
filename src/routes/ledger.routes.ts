@@ -6,10 +6,12 @@ import {
   createLedgerController,
   deleteLedgerController,
   ledgerReportController,
-  ledgerChartController
+  ledgerChartController,
+  updateLedgerController
 } from "../controllers/ledger.controller";
 
 import authMiddleware from "../middleware/userAuth";
+import { updateLedger } from "services/ledger.services";
 
 const router = express.Router();
 
@@ -18,6 +20,7 @@ router.get("/:id", findOneLedgerController);
 router.get("/dashboard/report", ledgerReportController);
 router.get("/dashboard/chart", ledgerChartController);
 router.post("/", createLedgerController);
+router.put("/:id",  updateLedgerController);
 router.delete("/:id", deleteLedgerController);
 
 export default router;

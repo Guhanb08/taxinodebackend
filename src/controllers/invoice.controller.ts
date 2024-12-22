@@ -115,13 +115,7 @@ export const updateInvoiceController = async (
     let payload = req.body;
     const { id } = req.params;
     const invoice = await updateInvoice(id, {
-      invoicename: payload.invoicename,
-      description: payload.description,
-      mobile: payload.mobile,
-      emailid: payload.emailid,
-      address: payload.address,
-      status: payload.status,
-      updatedBy: payload.updatedBy,
+     ...payload
     });
     if (invoice) {
       res.status(200).json({
