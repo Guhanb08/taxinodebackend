@@ -8,6 +8,7 @@ import {
   createCustomer,
   updateCustomer,
   deleteCustomer,
+  deleteCustomerByCustomerno
 } from "../services/customer.services";
 
 export const findAllCustomerController = async (
@@ -125,6 +126,33 @@ export const deleteCustomerController = async (
       res.status(200).json({
         data: customer,
         message: "Customer Deleted Successfully",
+      });
+    } else {
+      throw new Error("Data Not Found");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+// delete 
+export const deleteCustomerByNoController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { customerno } = req.params;
+
+    const numericCustomerNo = parseInt(customerno, 10);
+    const newCustomerCode = "CS" + numericCustomerNo.toString().padStart(4, "0");
+    const customer = await deleteCustomerByCustomerno(customerno);
+    if (customer) {
+      res.status(200).json({
+        data: customer,
+        message: "Customer Deleted Successfully",
+        newCustomerCode, // Include for debugging
       });
     } else {
       throw new Error("Data Not Found");

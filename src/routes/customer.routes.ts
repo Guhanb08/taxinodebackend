@@ -6,6 +6,7 @@ import {
   createCustomerController,
   updateCustomerController,
   deleteCustomerController,
+  deleteCustomerByNoController
 } from "../controllers/customer.controller";
 
 import authMiddleware from "../middleware/userAuth";
@@ -17,5 +18,6 @@ router.get("/:id", findOneCustomerController);
 router.post("/", createCustomerController);
 router.put("/:id", updateCustomerController);
 router.delete("/:id", deleteCustomerController);
+router.delete("/delete/:customerno", deleteCustomerByNoController);
 
 export default router;

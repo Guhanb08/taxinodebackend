@@ -26,3 +26,10 @@ export const deleteCustomer = async (id: String) => {
 };
 
 
+export const deleteCustomerByCustomerno = async (customercode: String) => {
+  return await CustomerModel.findOneAndDelete({
+    branch : '67587be45e0d811e2cb51a6a',
+    customercode : customercode
+  });
+}
+

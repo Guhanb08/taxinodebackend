@@ -79,9 +79,9 @@ export const createLedgerController = async (
     const latestLedger = allLedger[0];
     let branchBalance = latestLedger ? latestLedger.branchBalance : 0;
     if (payload.type === "Debit" && payload.amount > branchBalance) {
-      throw new Error(
+  /*     throw new Error(
         `Debit amount exceeds current  balance. Availble Balance - ${branchBalance}CHF`
-      );
+      ); */
     }
 
     const ledger = await createLedger({
